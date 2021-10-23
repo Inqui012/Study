@@ -8,22 +8,12 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function(){
+            var test = 0;
             $(window).scroll(function(){
-                var windowTop = $(window).scrollTop();
-                var step = $("div section:nth-child(2)").offset().top / 10;
-                var cnt = 0;
-                $("div section:nth-child(2)").addClass("fadein");
-                console.log(step);
-
-                if(windowTop >= step){
-                    var transX = 100 - (10 * cnt);
-                    $("div section:nth-child(2).fadein").css("transform","translateX("+ transX +"vw)");
-                    console.log(transX);
-                }
-                step *= 10;
-                cnt += 1;
-
-
+                var windowScr = $(window).scrollTop();
+                var elementScr = $("div section:nth-child(2)").offset().top;
+                test += 1 ;
+                console.log(test);
                 
             })
         })
