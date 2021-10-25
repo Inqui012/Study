@@ -8,30 +8,43 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function(){
-            var elementScr = $("div section:nth-child(2)").offset().top;
+            var elementScr01 = $("div section.slideHorizon").offset().top;
+            var elementScr02 = $("div section.slideVertical").offset().top;
 
             $(window).scroll(function(){
                 var windowScr = $(window).scrollTop();
-                if(windowScr > 0){
-                    $("div section:nth-child(2)").addClass("fadein");
+                var rate = (windowScr / elementScr01) * 100;
+                if(windowScr > 0 && windowScr <= elementScr01){
+                    // $("div section.first").addClass("on");
+                    $("div section.slideHorizon").addClass("on");
+                    // $("div section.first.on").css("transform","translateY(" + rate + "%)")
+                    $("div section.slideHorizon.on").css("transform","translateX(" + (100 - rate) + "%)");
                 }
+                if(windowScr > elementScr01){
+                    // $("div section.first.on").css("transform","translateY(" + 100 + "%)")
+                    $("div section.slideHorizon.on").css("transform","translateX(" + 0 + "%)");
+                }
+                // if(windowScr > elementScr02 + ($("div section.slideVertical").height() / 2)){
+                //     $("div section.slideVertical").addClass("on");
+                //     $("div section.slideVertical.on").css("transform","translateX(" + (100 - rate) + "%)")
+                // }
+
                 
             })
         })
     </script>
 </head>
 <style>
-    /* 수평스크롤바 안보이게만 하는거 */
-    .scrollbar-hidden::-webkit-scrollbar {display: none;}
-    .scrollbar-hidden {-ms-overflow-style: none; scrollbar-width: none;}
-
     * {margin: 0 auto; padding: 0;}
-    div section {height: 100vh; width: 100%; position: relative; display: flex; flex-wrap: wrap; align-items: center; align-content: center;}
-    div section:nth-child(2).fadein {transform: translateY(0vh);}
+    div section {height: 100vh; width: 100%; position: relative; display: flex; flex-wrap: wrap; align-items: center; align-content: center; transition: transform 0.1s ease;}
+    
+    div section.first.on {transform: translateY(0%);}
+    div section.slideHorizon.on {transform: translateX(100%);}
+    div section.slideVertical.on {transform: translateY(00%);}
 
-    div section:nth-child(1) {background-color: burlywood;}
-    div section:nth-child(2) {background-color: coral; transform: translateY(100vh); transition: transform 1s ease;}
-    div section:nth-child(3) {background-color: darkcyan;}
+    div section.first {background-color: burlywood; transform: translateY(0%);}
+    div section.slideHorizon {background-color: coral; transform: translateX(100%); z-index: 1;}
+    div section.slideVertical {background-color: darkcyan; transform: translateY(0%); z-index: 0;}
     div section:nth-child(4) {background-color: darkgrey;}
     div section:nth-child(5) {background-color: darkslateblue;}
 
@@ -40,21 +53,21 @@
 </style>
 <body>
     <div>
-        <section>
+        <section class="first">
             <h2>first</h2>
             <p>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                 Consequatur, animi, debitis et labore nostrum dolores suscipit blanditiis earum nisi asperiores quam sequi recusandae iste dolorum ipsam similique? Porro, cum harum?
             </p>
         </section>
-        <section>
+        <section class="slideHorizon">
             <h2>second</h2>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Similique natus itaque molestias perferendis reiciendis voluptatem accusamus facilis dolorum, aspernatur provident hic asperiores delectus vero assumenda veritatis officia rerum tempora tempore!
             </p>
         </section>
-        <section>
+        <section class="slideVertical">
             <h2>third</h2>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
