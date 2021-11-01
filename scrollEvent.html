@@ -10,11 +10,13 @@
         $(document).ready(function(){
             var elementScr01 = $("div section.second").offset().top;
             var elementScr02 = $("div section.third").offset().top;
+            var elementScr025 = elementScr02 - ((elementScr02 - elementScr01) / 2)
 
             $(window).scroll(function(){
                 var windowScr = $(window).scrollTop();
                 var rate = (windowScr / elementScr01) * 100;
-                var rate02 = (windowScr / (elementScr02 - elementScr01)) * -100;
+                var rate02 = (windowScr / (elementScr02 - elementScr01)) * 100;
+                var thirdoff = $("div section.third").offset().top;
 
                 $("div section.first").offset({top : windowScr});
                 $("div section.second").offset({top : windowScr});
@@ -30,13 +32,14 @@
                     // 페이지 스크롤이 끝나면 위치 고정
                     $("div section.second.on").css("transform","translateX(" + 0 + "%)");
                 }
-                if(windowScr > elementScr01 && windowScr <= elementScr02){
+                if(windowScr > elementScr01 && windowScr < thirdoff){
                     $("div section.third").addClass("on");
-                    $("div section.third.on").css("transform","translateY(" + (rate02 + 100) + "%)")
+                    // 스크롤이 아래로 움직임 + 트랜스폼으로 객체가 위로 움직임 => -50%퍼가 되면 상단으로 오네
+                    $("div section.third.on").css("transform","translateY(" + (100 - rate02) + "%)")
                     $("div section.third.on p").css("opacity", rate02 + "%");
                 }
-                if(windowScr > elementScr02){
-                    $("div section.third.on").css("transform","translateY(" + -100 + "%)")
+                if(windowScr >= thirdoff){
+                    $("div section.third.on").offset({top : windowScr});
                 }
             })
         })
