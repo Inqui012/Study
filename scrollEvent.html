@@ -34,6 +34,8 @@
                 }
                 if(windowScr > elementScr01 && windowScr < thirdoff){
                     $("div section.third").addClass("on");
+                    // 움직이는게 부드럽지가 않아...
+                    $("div section.third.on").offset({top : elementScr02});
                     // 스크롤이 아래로 움직임 + 트랜스폼으로 객체가 위로 움직임 => -50%퍼가 되면 상단으로 오네
                     $("div section.third.on").css("transform","translateY(" + (100 - rate02) + "%)")
                     $("div section.third.on p").css("opacity", rate02 + "%");
