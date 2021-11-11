@@ -8,9 +8,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function(){
+            // 사이즈 변경하면 안돼니까 리사이즈 기능도 넣어야 부드럽겠구나.
             var elementScr01 = $("div section.second").offset().top;
             var elementScr02 = $("div section.third").offset().top;
-            var elementScr025 = elementScr02 - ((elementScr02 - elementScr01) / 2)
+            // var elementScr025 = elementScr02 - ((elementScr02 - elementScr01) / 2)
 
             $(window).scroll(function(){
                 var windowScr = $(window).scrollTop();
@@ -34,13 +35,10 @@
                 }
                 if(windowScr > elementScr01 && windowScr < thirdoff){
                     $("div section.third").addClass("on");
-                    // 움직이는게 부드럽지가 않아...
-                    $("div section.third.on").offset({top : elementScr02});
-                    // 스크롤이 아래로 움직임 + 트랜스폼으로 객체가 위로 움직임 => -50%퍼가 되면 상단으로 오네
                     $("div section.third.on").css("transform","translateY(" + (100 - rate02) + "%)")
-                    $("div section.third.on p").css("opacity", rate02 + "%");
                 }
                 if(windowScr >= thirdoff){
+                    // 오프셋 탑을 리셋?
                     $("div section.third.on").offset({top : windowScr});
                 }
             })
@@ -53,12 +51,13 @@
 
     div section.second.on {transform: translateX(100%);}
     div section.third.on {transform: translateY(0%);}
-    div section.third.on p {opacity: 0%;}
+
+    /* div section.third.on p {opacity: 0%;} */
 
     div section.first {background-color: burlywood;}
     div section.second {background-color: coral; transform: translateX(100%);}
     div section.third {background-color: darkcyan; transform: translateY(0%);}
-    div section.third p {opacity: 0%; transition: opacity 0.1s ease;}
+    /* div section.third p {opacity: 0%; transition: opacity 0.1s ease;} */
     div section:nth-child(4) {background-color: darkgrey;}
     div section:nth-child(5) {background-color: darkslateblue;}
 
