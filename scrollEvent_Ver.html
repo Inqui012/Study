@@ -4,43 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>scroll text</title>
+    <title>scroll Vertical</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function(){
-            // 사이즈 변경하면 안돼니까 리사이즈 기능도 넣어야 부드럽겠구나.
             var elementScr01 = $("div section.second").offset().top;
             var elementScr02 = $("div section.third").offset().top;
-            // var elementScr025 = elementScr02 - ((elementScr02 - elementScr01) / 2)
+            var test = ((elementScr02 - elementScr01) / 2) + elementScr01;
 
             $(window).scroll(function(){
                 var windowScr = $(window).scrollTop();
-                var rate = (windowScr / elementScr01) * 100;
-                var rate02 = (windowScr / (elementScr02 - elementScr01)) * 100;
-                var thirdoff = $("div section.third").offset().top;
+                var rate = (windowScr /elementScr01) * 100;
 
                 $("div section.first").offset({top : windowScr});
-                $("div section.second").offset({top : windowScr});
+
                 if(windowScr == 0){
-                    // 스크롤 속도때문에 위치 어긋나는거 막기
-                    $("div section.second.on").css("transform","translateX(" + 100 + "%)");
+                    $("div section.second").css("transform","translateY(" + 0 + "%)");
                 }
-                if(windowScr > 0 && windowScr <= elementScr01){
-                    $("div section.second").addClass("on");
-                    $("div section.second.on").css("transform","translateX(" + (100 - rate) + "%)");
+                if(windowScr > 0 && windowScr <= (elementScr01 *0.5)){
+                    $("div section:nth-child(n+2)").css("transform","translateY(" + (0 - rate) + "%)");
                 }
-                if(windowScr > elementScr01){
-                    // 페이지 스크롤이 끝나면 위치 고정
-                    $("div section.second.on").css("transform","translateX(" + 0 + "%)");
+                if(windowScr > (elementScr01 *0.5)){
+                    // 상하로 만들땐 이동 최대치가 반으로
+                    $("div section.second").css("transform","translateY(" + -50 + "%)");
+                    $("div section.second").offset({top : windowScr});
                 }
-                if(windowScr > elementScr01 && windowScr < thirdoff){
-                    $("div section.third").addClass("on");
-                    $("div section.third.on").css("transform","translateY(" + (100 - rate02) + "%)")
-                }
-                if(windowScr >= thirdoff){
-                    // 오프셋 탑을 리셋?
-                    $("div section.third.on").offset({top : windowScr});
-                }
+
             })
         })
     </script>
@@ -48,21 +37,15 @@
 <style>
     * {margin: 0 auto; padding: 0;}
     div section {height: 100vh; width: 100%; position: relative; display: flex; flex-wrap: wrap; align-items: center; align-content: center; transition: transform 0.1s ease;}
-
-    div section.second.on {transform: translateX(100%);}
-    div section.third.on {transform: translateY(0%);}
-
-    /* div section.third.on p {opacity: 0%;} */
-
-    div section.first {background-color: burlywood;}
-    div section.second {background-color: coral; transform: translateX(100%);}
-    div section.third {background-color: darkcyan; transform: translateY(0%);}
-    /* div section.third p {opacity: 0%; transition: opacity 0.1s ease;} */
-    div section:nth-child(4) {background-color: darkgrey;}
-    div section:nth-child(5) {background-color: darkslateblue;}
-
     div section h2 {font-weight: bold; font-size: 4em; text-align: center;}
     div section p {width: 60%; text-align: center; font-size: 2em;}
+
+    div section.first {background-color: burlywood;}
+    div section.second {background-color: coral; transform: translateY(0%);}
+    div section.third {background-color: darkcyan; transform: translateY(0%);}
+    div section.fourth {background-color: darkgrey; transform: translateY(0%);}
+    div section.fifth {background-color: darkslateblue; transform: translateY(0%);}
+
 </style>
 <body>
     <div>
@@ -94,7 +77,7 @@
                 Impedit sit consequatur tempora laboriosam nesciunt beatae dolorum nam hic corrupti, alias molestiae, cum suscipit et nobis dignissimos dolor voluptatum maiores labore?
             </p>
         </section>
-        <section>
+        <section class="fifth">
             <h2>fifth</h2>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
