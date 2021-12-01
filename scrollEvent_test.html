@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colored Text</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $(window).scroll(function(){
+                var windowScr = $(window).scrollTop();
+
+                if(windowScr > 0){
+                    $("div section span p.base").css("opacity","~");
+                }
+            })
+        })
+    </script>
+</head>
+<style>
+    * {margin: 0 auto; padding: 0;}
+    div {width: 100%; height: 300vh; position: relative; background-color: burlywood; display: flex; justify-content: center;}
+    div section {width: 100%; height: 50%; margin-top: 12.5%; position: fixed; top: 0; left: 0; text-align: center; display: flex; flex-wrap: wrap; justify-content: center; align-items: center;}
+    div section span {width: 80%; position: relative;}
+    div section span p {font-size: 5em; font-weight: bold;}
+
+    div section span p.base {color: steelblue; opacity: 0; transition: opacity 1s ease;}
+
+    div section span p.overlap {width: 0%; color: darkcyan; position: absolute; top: 0; left: 108px; transition: width 1s ease;  display: none;}
+
+</style>
+<body>
+    <div>
+        <section>
+            <span>
+                <p class="base">Test for Coloring Text by Scrolling</p>
+                <p class="overlap">Test for Coloring Text by Scrolling</p>
+            </span>
+        </section>
+    </div>
+</body>
+</html>
