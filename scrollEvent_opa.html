@@ -10,9 +10,12 @@
         $(document).ready(function(){
             $(window).scroll(function(){
                 var windowScr = $(window).scrollTop();
+                //스크롤바가 제일 밑에 있을때 = 페이지 전체길이 - 화면 높이
+                var test = $(document).height()-$(window).height();
+                var rate = (windowScr /test) * 100; 
 
                 if(windowScr > 0){
-                    $("div section span p.base").css("opacity","~");
+                    $("div section span p.base").css("opacity", rate + "%");
                 }
             })
         })
@@ -25,9 +28,7 @@
     div section span {width: 80%; position: relative;}
     div section span p {font-size: 5em; font-weight: bold;}
 
-    div section span p.base {color: steelblue; opacity: 0; transition: opacity 1s ease;}
-
-    div section span p.overlap {width: 0%; color: darkcyan; position: absolute; top: 0; left: 108px; transition: width 1s ease;  display: none;}
+    div section span p.base {color: steelblue; opacity: 0; transition: opacity 0.2s ease;}
 
 </style>
 <body>
@@ -35,7 +36,6 @@
         <section>
             <span>
                 <p class="base">Test for Coloring Text by Scrolling</p>
-                <p class="overlap">Test for Coloring Text by Scrolling</p>
             </span>
         </section>
     </div>
