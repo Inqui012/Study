@@ -10,11 +10,13 @@
         $(document).ready(function(){
             var elementScr01 = $("div section.second").offset().top;
             var elementScr02 = $("div section.third").offset().top;
-            var test = ((elementScr02 - elementScr01) / 2) + elementScr01;
+            var halfRate = ((elementScr02 - elementScr01) / 2) + elementScr01;
+
+            // 올라갈때가 부드럽지 않은데...
 
             $(window).scroll(function(){
                 var windowScr = $(window).scrollTop();
-                var rate = (windowScr /elementScr01) * 100;
+                var rate = (windowScr / elementScr01) * 100;
 
                 $("div section.first").offset({top : windowScr});
 
@@ -39,15 +41,15 @@
                     $("div section.third").offset({top : windowScr});
                 }
 
-                if(windowScr > elementScr01 && windowScr <= test){
+                if(windowScr > elementScr01 && windowScr <= halfRate){
                     $("div section:nth-child(n+4)").css("transform","translateY(" + (0 - rate) + "%)");
                 }
-                if(windowScr > test){
+                if(windowScr > halfRate){
                     $("div section.fourth").css("transform","translateY(" + -50 + "%)");
                     $("div section.fourth").offset({top : windowScr});
                 }
 
-                if(windowScr > test && windowScr <= elementScr02){
+                if(windowScr > halfRate && windowScr <= elementScr02){
                     $("div section:nth-child(n+5)").css("transform","translateY(" + (0 - rate) + "%)");
                 }
                 if(windowScr > elementScr02){
