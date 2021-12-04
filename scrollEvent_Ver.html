@@ -9,10 +9,10 @@
     <script>
         $(document).ready(function(){
             var elementScr01 = $("div section.second").offset().top;
-            var elementScr02 = $("div section.third").offset().top;
-            var halfRate = ((elementScr02 - elementScr01) / 2) + elementScr01;
+            // var elementScr02 = $("div section.third").offset().top;
+            // var halfScr = ((elementScr02 - elementScr01) / 2) + elementScr01;
 
-            // 올라갈때가 부드럽지 않은데...
+            // 올라갈때가 부드럽지 않은데... 내려올때는 위 0.5 높이 올라갈때는 아래 0.5?
 
             $(window).scroll(function(){
                 var windowScr = $(window).scrollTop();
@@ -41,15 +41,15 @@
                 //     $("div section.third").offset({top : windowScr});
                 // }
 
-                // if(windowScr > elementScr01 && windowScr <= halfRate){
+                // if(windowScr > elementScr01 && windowScr <= halfScr){
                 //     $("div section:nth-child(n+4)").css("transform","translateY(" + (0 - rate) + "%)");
                 // }
-                // if(windowScr > halfRate){
+                // if(windowScr > halfScr){
                 //     $("div section.fourth").css("transform","translateY(" + -50 + "%)");
                 //     $("div section.fourth").offset({top : windowScr});
                 // }
 
-                // if(windowScr > halfRate && windowScr <= elementScr02){
+                // if(windowScr > halfScr && windowScr <= elementScr02){
                 //     $("div section:nth-child(n+5)").css("transform","translateY(" + (0 - rate) + "%)");
                 // }
                 // if(windowScr > elementScr02){
