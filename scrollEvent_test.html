@@ -8,68 +8,71 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function(){
-            var elementScr01 = $("div section.second").offset().top;
-            var elementScr02 = $("div section.third").offset().top;
-            var elementScr03 = $("div section.fourth").offset().top;
-            var elementScr04 = $("div section.fifth").offset().top;
+            
+            // var elementScr01 = $("div section.second").offset().top;
+            // var elementScr02 = $("div section.third").offset().top;
+            // var elementScr03 = $("div section.fourth").offset().top;
+            // var elementScr04 = $("div section.fifth").offset().top;
 
             $(window).scroll(function(){
                 var windowScr = $(window).scrollTop();
-                var rate = (windowScr / elementScr01) * 100;
-                // 수치가 계속 올라가네
-                console.log(rate);
-
+                // var rate = (windowScr / elementScr01) * 100;
                 $("div section").offset({top : windowScr});
+                // // 수치가 계속 올라가네
+                // console.log(rate);
+                $("div section.second").css("transform","translateX(" + 0 + "%)");
 
-                if(windowScr == 0){
-                    // 스크롤 속도때문에 위치 어긋나는거 막기
-                    $("div section.second").css("transform","translateX(" + 100 + "%)");
-                }
-                if(windowScr > 0 && windowScr <= elementScr01){
-                    $("div section.second").css("transform","translateX(" + (100 - rate) + "%)");
-                }
-                if(windowScr > elementScr01){
-                    // 페이지 스크롤이 끝나면 위치 고정
-                    $("div section.second").css("transform","translateX(" + 0 + "%)");
-                }
+
+
+                // if(windowScr == 0){
+                //     // 스크롤 속도때문에 위치 어긋나는거 막기
+                //     $("div section.second").css("transform","translateX(" + 100 + "%)");
+                // }
+                // if(windowScr > 0 && windowScr <= elementScr01){
+                //     $("div section.second").css("transform","translateX(" + (100 - rate) + "%)");
+                // }
+                // if(windowScr > elementScr01){
+                //     // 페이지 스크롤이 끝나면 위치 고정
+                //     $("div section.second").css("transform","translateX(" + 0 + "%)");
+                // }
                 
-                //반복
-                if(windowScr < elementScr01){
-                    $("div section.third").css("transform","translateX(" + 100 + "%)");
-                }
-                if(windowScr > elementScr01 && windowScr <= elementScr02){
-                    $("div section.third").css("transform","translateX(" + (200 -rate) + "%)");
-                }
-                if(windowScr > elementScr02){
-                    $("div section.third").css("transform","translateX(" + 0 + "%)");
-                }
+                // //반복
+                // if(windowScr < elementScr01){
+                //     $("div section.third").css("transform","translateX(" + 100 + "%)");
+                // }
+                // if(windowScr > elementScr01 && windowScr <= elementScr02){
+                //     $("div section.third").css("transform","translateX(" + (200 -rate) + "%)");
+                // }
+                // if(windowScr > elementScr02){
+                //     $("div section.third").css("transform","translateX(" + 0 + "%)");
+                // }
 
-                if(windowScr < elementScr02){
-                    $("div section.fourth").css("transform","translateX(" + 100 + "%)");
-                }
-                if(windowScr > elementScr02 && windowScr <= elementScr03){
-                    $("div section.fourth").css("transform","translateX(" + (300 -rate) + "%)");
-                }
-                if(windowScr > elementScr03){
-                    $("div section.fourth").css("transform","translateX(" + 0 + "%)");
-                }
+                // if(windowScr < elementScr02){
+                //     $("div section.fourth").css("transform","translateX(" + 100 + "%)");
+                // }
+                // if(windowScr > elementScr02 && windowScr <= elementScr03){
+                //     $("div section.fourth").css("transform","translateX(" + (300 -rate) + "%)");
+                // }
+                // if(windowScr > elementScr03){
+                //     $("div section.fourth").css("transform","translateX(" + 0 + "%)");
+                // }
 
-                if(windowScr < elementScr03){
-                    $("div section.fifth").css("transform","translateX(" + 100 + "%)");
-                }
-                if(windowScr > elementScr03 && windowScr <= elementScr04){
-                    $("div section.fifth").css("transform","translateX(" + (400 -rate) + "%)");
-                }
-                if(windowScr > elementScr04){
-                    $("div section.fifth").css("transform","translateX(" + 0 + "%)");
-                }
+                // if(windowScr < elementScr03){
+                //     $("div section.fifth").css("transform","translateX(" + 100 + "%)");
+                // }
+                // if(windowScr > elementScr03 && windowScr <= elementScr04){
+                //     $("div section.fifth").css("transform","translateX(" + (400 -rate) + "%)");
+                // }
+                // if(windowScr > elementScr04){
+                //     $("div section.fifth").css("transform","translateX(" + 0 + "%)");
+                // }
             })
         })
     </script>
 </head>
 <style>
-    * {margin: 0 auto; padding: 0;}
-    div {overflow-x: hidden;}
+    * {margin: 0 auto; padding: 0;overflow-y: hidden;}
+    div {overflow-x: hidden; }
     div section {height: 100vh; width: 100%; position: relative; display: flex; flex-wrap: wrap; align-items: center; align-content: center; transition: transform 0.1s ease;}
     div section h2 {font-weight: bold; font-size: 4em; text-align: center;}
     div section p {width: 60%; text-align: center; font-size: 2em;}
