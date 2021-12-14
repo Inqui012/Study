@@ -18,21 +18,17 @@
                 var windowScr = $(window).scrollTop();
                 // var rate = (windowScr / elementScr01) * 100;
                 $("div section").offset({top : windowScr});
-                // // 수치가 계속 올라가네
-                // console.log(rate);
                 $("div section.second").css("transform","translateX(" + 0 + "%)");
 
 
 
                 // if(windowScr == 0){
-                //     // 스크롤 속도때문에 위치 어긋나는거 막기
                 //     $("div section.second").css("transform","translateX(" + 100 + "%)");
                 // }
                 // if(windowScr > 0 && windowScr <= elementScr01){
                 //     $("div section.second").css("transform","translateX(" + (100 - rate) + "%)");
                 // }
                 // if(windowScr > elementScr01){
-                //     // 페이지 스크롤이 끝나면 위치 고정
                 //     $("div section.second").css("transform","translateX(" + 0 + "%)");
                 // }
                 
