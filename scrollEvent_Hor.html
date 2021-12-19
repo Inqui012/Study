@@ -13,15 +13,6 @@
             var elementScr03 = $("div section.fourth").offset().top;
             var elementScr04 = $("div section.fifth").offset().top;
 
-            // 사이즈 변경하면 안돼니까 리사이즈 기능도 넣어야 부드럽겠구나.
-            // 스크롤 다음에 리사이즈 하면 오프셋 다 올라가있어서 이상하게 움직이는것 같아
-            // $(window).resize(function(){
-            //     elementScr01 = $("div section.second").offset().top;
-            //     elementScr02 = $("div section.third").offset().top;
-            //     elementScr03 = $("div section.fourth").offset().top;
-            //     elementScr04 = $("div section.fifth").offset().top;
-            // })
-
             $(window).scroll(function(){
                 var windowScr = $(window).scrollTop();
                 var rate = (windowScr / elementScr01) * 100;
